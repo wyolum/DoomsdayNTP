@@ -21,14 +21,12 @@
 #include <ESP8266WiFi.h>
 #include <WiFiUdp.h>
 #include <Wire.h>
-#include "RTClib.h"
+#include <RTClib.h>
+#include "credentials.h"
 
 RTC_DS3231 rtc;
 DateTime now;
 uint32_t last_set_epoch = 0;
-
-char ssid[] = "BP6DF";  //  your network SSID (name)
-char pass[] = "ABBAABBA00";       // your network password
 
 const double LSB = 1/4294967296.;
 

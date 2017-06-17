@@ -23,7 +23,12 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
-#include "RTClib.h"
+#include <RTClib.h>
+#include "credentials.h"
+/* ---- credentials.h ----
+char ssid[] = "XXXXXXXXXX";  //  your network SSID (name)
+char pass[] = "YYYYYYYYYY";  // your network password
+*/
 
 RTC_DS3231 rtc;
 DateTime now;
@@ -31,9 +36,6 @@ uint32_t last_set_epoch = 0;
 uint32_t current_time;
 uint32_t last_update_time;
 Adafruit_SSD1306 display = Adafruit_SSD1306();
-
-char ssid[] = "BP6DF";  //  your network SSID (name)
-char pass[] = "ABBAABBA00";       // your network password
 
 const double LSB = 1./4294967296.;
 const unsigned long seventyYears = 2208988800UL;
@@ -169,12 +171,9 @@ void setup()
 
   // set up the display
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 128x32)
-
-  // Show image buffer on the display hardware.
-  // Since the buffer is intialized with an Adafruit splashscreen
-  // internally, this will display the splashscreen.
+  display.clearDisplay();
   display.display();
-  delay(1000);
+  delay(10000);
 
   // Clear the buffer.
   

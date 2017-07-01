@@ -307,7 +307,7 @@ void requestNTP(){
 	delay((ms_per_second - getTimeMS() - diff_ms - RTC_SET_DURATION_ms - MEASURED_BIAS_ms) % ms_per_second); 
 	current_time = epoch + 1 + seventyYears;
 	rtc.adjust(epoch + 1);
-	attachInterrupt(2, SqwInterrupt, RISING); 
+	attachInterrupt(SQW_PIN, SqwInterrupt, RISING); 
 	Serial.println("Clock reset.");
       }
       last_update_time = current_time;
@@ -449,8 +449,8 @@ void displayTime(){
 void loop()
 {
 if(current_time != last_display_time){
-  //displayTime();
-    KandyTime();
+  displayTime();
+  //KandyTime();
   }
   int packetSize = udp.parsePacket();
   if (packetSize) {
